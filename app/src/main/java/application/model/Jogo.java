@@ -26,8 +26,11 @@ public class Jogo {
     private Genero genero;
 
     @ManyToMany
-    @JoinTable
-    
+    @JoinTable(
+        name = "jogos_possuem_plataformas",
+        joinColumns = @JoinColumn(name = "jogos_id"),
+        inverseJoinColumns = @JoinColumn(name = "plataformas_id")
+    )
     private Set<Plataforma> plataformas = new HashSet<>();
 
     public int getId() {
@@ -54,7 +57,6 @@ public class Jogo {
     public Set<Plataforma> getPlataformas() {
         return plataformas;
     }
-
     public void setPlataformas(Set<Plataforma> plataformas) {
         this.plataformas = plataformas;
     }
